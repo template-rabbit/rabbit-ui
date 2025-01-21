@@ -6,4 +6,6 @@ export interface Props {
 const { lang } = Astro.props as Props;
 ---
 
-<button lang={lang}>Press me</button>
+<button lang={lang} class="p-4 border border-black">
+  <slot />
+</button>
