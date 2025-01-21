@@ -1,0 +1,44 @@
+---
+export interface Props {
+  click?: string
+  brand?: boolean
+  outlined?: boolean
+  rounded?: boolean
+  bold?: boolean
+  size?: 'small' | 'normal' | 'large'
+  padding?: 'small' | 'normal' | 'large'
+}
+
+const { click, outlined, brand, rounded, bold, size, padding  } = Astro.props as Props;
+
+const paddings = {
+  small: 'px-2 py-1',
+  normal: 'px-4 py-2',
+  large: 'px-6 py-3',
+}
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const classArray = []
+
+classArray.push('inline-flex items-center justify-center gap-2')
+brand && classArray.push('text-brand')
+bold && classArray.push('font-bold')
+classArray.push(sizes[size || 'normal'])
+classArray.push(paddings[padding || 'normal'])
+rounded && classArray.push('rounded')
+classArray.push(outlined ? 'border bg-transparent' : 'bg-dark dark:bg-light text-light dark:text-dark')
+outlined && brand && classArray.push('border-brand')
+outlined && !brand && classArray.push('border-dark dark:border-light')
+
+const combined = classArray.join(' ')
+
+---
+
+<button x-on:click={click} class={combined}>
+  <slot />
+</button>

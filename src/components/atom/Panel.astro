@@ -1,0 +1,27 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large'
+}
+
+const {brand, size} = Astro.props as Props;
+
+const sizes = {
+  small: 'shadow',
+  normal: 'shadow-md',
+  large: 'shadow-lg',
+}
+
+const classArray = []
+classArray.push('border rounded-lg p-4 mb-8')
+!brand && classArray.push('dark:border-light/10 border-dark/10 shadow-dark/5 dark:shadow-light/5')
+brand && classArray.push('dark:border-brand/20 shadow-brand/15')
+classArray.push(sizes[size || 'normal'])
+
+const combined = classArray.join(' ')
+---
+
+<div class={combined}>
+  <slot />
+</div>
