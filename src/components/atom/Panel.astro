@@ -2,22 +2,33 @@
 import ListElement from "../atom/ListElement.astro";
 export interface Props {
   brand?: boolean
-  size?: 'small' | 'normal' | 'large'
+  radius?: 'small' | 'normal' | 'large'
+  blur?: 'none' | 'small' | 'normal' | 'large'
+  contrast?: boolean
 }
 
-const {brand, size} = Astro.props as Props;
+const {brand, radius, contrast, blur} = Astro.props as Props;
 
-const sizes = {
-  small: 'shadow',
-  normal: 'shadow-md',
-  large: 'shadow-lg',
+const radiuses = {
+  small: 'rounded',
+  normal: 'rounded-md',
+  large: 'rounded-lg',
+}
+const blures = {
+  none: 'backdrop-blur-none',
+  small: 'backdrop-blur-sm',
+  normal: 'backdrop-blur-md',
+  large: 'backdrop-blur-lg',
 }
 
 const classArray = []
-classArray.push('border rounded-lg p-4 mb-8')
-!brand && classArray.push('dark:border-light/10 border-dark/10 shadow-dark/5 dark:shadow-light/5')
-brand && classArray.push('dark:border-brand/20 shadow-brand/15')
-classArray.push(sizes[size || 'normal'])
+classArray.push('border p-4 mb-8')
+!brand && !contrast && classArray.push('dark:border-light/15 border-dark/15 bg-dark/5 dark:bg-light/5')
+!brand && contrast && classArray.push('dark:border-light/15 border-dark/15 bg-white dark:bg-black')
+brand && !contrast && classArray.push('border-brand/25 bg-brand/10')
+brand && contrast && classArray.push('border-brand/25 bg-white dark:bg-black')
+blur && classArray.push(blures[blur || 'none'])
+classArray.push(radiuses[radius || 'normal'])
 
 const combined = classArray.join(' ')
 ---

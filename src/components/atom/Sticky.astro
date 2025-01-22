@@ -1,0 +1,20 @@
+---
+
+export interface Props {
+  top?: 'none' | 'small' | 'normal' | 'large'
+}
+
+const tops = {
+  none: 'top-0',
+  small: 'top-2',
+  normal: 'top-4',
+  large: 'top-8',
+}
+
+const { class: className, top } = Astro.props
+---
+
+
+<div class=`sticky left-0 right-0 ${className} ${top && tops[top || 'none']}`>
+  <slot/>
+</div>

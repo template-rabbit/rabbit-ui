@@ -1,19 +1,45 @@
 ---
-export interface Props {
-  items: [];
-  ordered?: boolean;
-  outside?: boolean;
-  brand?: boolean;
+// items={[{name: 'Home', link: '/'}, {name: 'About', link: '/about'}, {name: 'Contact', link: '/contact'}]}
+
+interface Link {
+  name: string;
+  link: string;
 }
 
-const {items, ordered, outside, brand} = Astro.props as Props;
+export interface Props {
+  items: Link[];
+  brand?: boolean;
+  className?: string;
+  inline?: boolean
+  spacing?: 'small' | 'normal' | 'large';
+  hideOnMobile?: boolean
+}
 
-const combined = `${outside ? 'list-outside' : 'list-inside'} list-decimal ${brand && 'text-brand'} ${ordered ? 'list-decimal' : 'list-disc'}`
-const Element = ordered ? 'ol' : 'ul'
+const {items, brand, class: className, inline, spacing, hideOnMobile} = Astro.props as Props;
+
+const spacings = {
+  small: 'gap-2',
+  normal: 'gap-4',
+  large: 'gap-8',
+}
+
+const classArray = []
+classArray.push(brand ? 'text-brand' : '')
+classArray.push(!inline ? 'flex-col' : '')
+classArray.push(spacings[spacing || 'normal'])
+classArray.push('items-center')
+classArray.push(hideOnMobile ? 'hidden md:flex' : 'flex')
+
+const combined = classArray.join(' ')
 ---
 
-<Element class={combined}>
-  {items.map((item: string) => (
-    <li>{item}</li>
-  ))}
-</Element>
+  <ul class={combined}>
+    {items.map((item) => (
+      <li class={className}>
+        <a href={item.link}>
+          {item.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+

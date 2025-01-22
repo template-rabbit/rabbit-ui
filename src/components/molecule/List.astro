@@ -1,0 +1,19 @@
+---
+export interface Props {
+  items: [];
+  ordered?: boolean;
+  outside?: boolean;
+  brand?: boolean;
+}
+
+const {items, ordered, outside, brand} = Astro.props as Props;
+
+const combined = `${outside ? 'list-outside' : 'list-inside'} list-decimal ${brand && 'text-brand'} ${ordered ? 'list-decimal' : 'list-disc'}`
+const Element = ordered ? 'ol' : 'ul'
+---
+
+<Element class={combined}>
+  {items.map((item: string) => (
+    <li>{item}</li>
+  ))}
+</Element>

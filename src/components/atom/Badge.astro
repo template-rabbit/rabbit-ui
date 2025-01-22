@@ -1,0 +1,34 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large'
+  padding?: 'small' | 'normal' | 'large'
+}
+
+const {brand, size, padding} = Astro.props as Props;
+
+const sizes = {
+  small: 'text-xs',
+  normal: 'text-sm',
+  large: 'text-base',
+}
+
+const paddings = {
+  small: 'px-1 py-0.5',
+  normal: 'px-2 py-1',
+  large: 'px-4 py-2',
+}
+
+const classArray = []
+classArray.push('rounded-full border inline-block bg-dark/5 dark:bg-light/5 inline-flex gap-2 items-center')
+brand && classArray.push('text-brand border-brand/25')
+!brand && classArray.push('border-dark/25 dark:border-light/25')
+classArray.push(sizes[size || 'normal'])
+classArray.push(paddings[padding || 'normal'])
+const combined = classArray.join(' ')
+---
+
+<div class={combined}>
+  <slot />
+</div>

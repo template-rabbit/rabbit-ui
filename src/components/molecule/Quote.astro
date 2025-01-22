@@ -1,0 +1,15 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  brand?: boolean;
+  cite: string;
+}
+
+const {brand, cite} = Astro.props as Props;
+
+const combined = brand && 'text-brand'
+---
+
+<blockquote class={combined} cite={cite}>
+  <slot />
+</blockquote>

@@ -1,0 +1,19 @@
+---
+import ListElement from "../atom/ListElement.astro";
+import FaqElement from "../atom/FaqElement.astro";
+
+interface Item {
+  question: string;
+  answer: string;
+}
+export interface Props {
+  items: Item[];
+  brand?: boolean;
+}
+
+const {items} = Astro.props as Props;
+---
+
+{items.map((item) => (
+ <FaqElement brand="brand" question={item.question} answer={item.answer} />
+))}

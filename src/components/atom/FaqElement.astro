@@ -1,0 +1,33 @@
+---
+import ListElement from "../atom/ListElement.astro";
+import Caret from "../local/icons/Caret.astro";
+export interface Props {
+  question: string
+  answer: string
+  brand?: boolean
+}
+
+const {question, answer, brand} = Astro.props as Props;
+---
+<dl x-data="{isOpen: false}" class=`mb-8`>
+  <dt class=`${brand ? 'text-brand':''} mb-2 text-lg`>
+    <button
+      @click="isOpen = !isOpen"
+      class="flex justify-between items-center w-full"
+    >
+      {question}
+      <span
+        class="duration-300 transition-all"
+        x-bind:class="isOpen ? 'rotate-180':'rotate-0'"
+      >
+        <Caret />
+      </span>
+    </button>
+  </dt>
+  <dd
+    x-bind:class="isOpen && 'grid-rows-[1fr]'"
+    class="grid grid-rows-[0fr] duration-300 font-light"
+  >
+    <div class="overflow-hidden">{answer}</div>
+  </dd>
+</dl>

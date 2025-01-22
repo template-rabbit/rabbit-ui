@@ -1,10 +1,17 @@
 ---
+import Heading from "../atom/Heading.astro";
+import Button from "../atom/Button.astro";
 export interface Props {
 }
 
 ---
 
-<button class="p-4 border border-black p-8">
-  <h1>This is search</h1>
+<div class="" x-data="{ open: false }">
+  <h1 x-on:click="open = !open">This is hero</h1>
+  <Heading x-on:click="open = !open" level={1}>This is hero</Heading>
+  <div x-show="open">
+    Dropdown Contents...
+  </div>
+  <Button click="open = !open">Hello There</Button>
   <slot />
-</button>
+</div>

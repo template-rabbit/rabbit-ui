@@ -1,11 +1,58 @@
 ---
 export interface Props {
-  lang: string;
+  click?: string
+  brand?: boolean
+  outlined?: boolean
+  rounded?: boolean
+  bold?: boolean
+  underline?: boolean
+  size?: 'small' | 'normal' | 'large'
+  padding?: 'small' | 'normal' | 'large'
 }
 
-const { lang } = Astro.props as Props;
+const { click, outlined, brand, rounded, bold, size, padding, underline  } = Astro.props as Props;
+
+const paddings = {
+  small: 'px-2 py-1',
+  normal: 'px-4 py-2',
+  large: 'px-6 py-3',
+}
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const classArray = []
+
+classArray.push('inline-flex items-center justify-center gap-2 transition-all')
+brand && classArray.push('text-brand')
+underline && classArray.push('underline')
+bold && classArray.push('font-bold')
+classArray.push(sizes[size || 'normal'])
+classArray.push(paddings[padding || 'normal'])
+rounded && classArray.push('rounded')
+outlined && classArray.push('border')
+
+// outlined && brand && classArray.push()
+// !outlined && !brand && classArray.push()
+// outlined && !brand && classArray.push()
+// !outlined && brand && classArray.push()
+
+
+!outlined && !brand && classArray.push('bg-dark dark:bg-light text-light dark:text-dark')
+!outlined && brand && classArray.push('bg-brand text-brand-contrast')
+outlined && brand && classArray.push('border-brand bg-dark dark:bg-light text-brand')
+outlined && !brand && classArray.push('border-dark bg-dark dark:bg-light dark:border-light')
+
+outlined && classArray.push('!bg-opacity-0 hover:bg-opacity-10')
+!outlined && classArray.push('!bg-opacity-100 hover:bg-opacity-90')
+
+const combined = classArray.join(' ')
+
 ---
 
-<button lang={lang} class="p-4 border border-black p-8">
+<button x-on:click={click} class={combined}>
   <slot />
 </button>

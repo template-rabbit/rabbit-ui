@@ -1,12 +1,22 @@
 ---
 import ListElement from "../atom/ListElement.astro";
 export interface Props {
-  brand?: boolean;
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large'
 }
 
 const {brand} = Astro.props as Props;
 
-const combined = brand && 'text-brand'
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const classArray = []
+classArray.push(sizes[size || 'normal'])
+
+const combined = classArray.join(' ')
 ---
 
 <div class={combined}>

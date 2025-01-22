@@ -1,0 +1,93 @@
+---
+// items={[{name: 'Home', link: '/'}, {name: 'About', link: '/about'}, {name: 'Contact', link: '/contact'}]}
+
+interface Link {
+  name: string;
+  link: string;
+}
+
+export interface Props {
+  items: Link[];
+  brand?: boolean;
+  className?: string;
+  spacing?: 'small' | 'normal' | 'large';
+  hideOnMobile?: boolean
+}
+
+const {items, brand, class: className, spacing, hideOnMobile} = Astro.props as Props;
+
+const spacings = {
+  small: 'gap-2',
+  normal: 'gap-4',
+  large: 'gap-8',
+}
+
+const classArray = []
+classArray.push(hideOnMobile ? 'md:hidden flex' : 'flex')
+
+const combined = classArray.join(' ')
+---
+<div x-data="{ open: false }" class=`${hideOnMobile ? 'md:hidden inline' : 'inline'}`>
+  <button @click=" open = !open"><slot /></button>
+  <div x-show="open" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div
+      x-show="open"
+      class="fixed inset-0 bg-brand/25 backdrop-blur transition-all"
+      x-transition:enter="ease-in-out duration-500"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="ease-in-out duration-500"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      aria-hidden="true"
+      @click="open = false">
+    </div>
+
+    <div x-show="open" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+      <div x-show="open" class="relative z-10 bg-transparent" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 overflow-hidden">
+          <div class="absolute inset-0 overflow-hidden bg-transparent">
+            <div
+              class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10"
+              x-show="open"
+              x-transition:enter="transform transition ease-in-out duration-500"
+              x-transition:enter-start="translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transform transition ease-in-out duration-500"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="translate-x-full">
+              <div class="pointer-events-auto relative w-screen max-w-md dark:bg-light bg-dark shadow-xl">
+                <div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                  <button @click="open = false" type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div class="flex h-full flex-col overflow-y-scroll py-6 px-4 sm:px-6 text-light dark:text-dark">
+                  <div class="mt-6 flex-1">
+                    <ul class="flex flex-col gap-2">
+                      {items.map((item) => (
+                        <li class="underline text-xl">
+                          <a href={item.link}>
+                            {item.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+</div>
+
+
+
+

@@ -1,0 +1,43 @@
+---
+// menu={[{name: 'Home', link: '/'}, {name: 'About', link: '/about'}, {name: 'Contact', link: '/contact'}]}
+import ListElement from "../atom/ListElement.astro";
+import Container from "../molecule/Container.astro";
+import NavList from "../molecule/NavList.astro";
+export interface Props {
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large'
+  menu?: []
+  menuSpacing?: 'small' | 'normal' | 'large'
+  width?: 'small' | 'normal' | 'large' | 'full'
+  sticky?: boolean
+  linkClass?: string
+}
+
+const {brand, size, menu, menuSpacing, width, sticky, linkClass} = Astro.props as Props;
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const menuSpacings = {
+  small: 'gap-2',
+  normal: 'gap-4',
+  large: 'gap-8',
+}
+
+const classArray = []
+classArray.push('flex justify-between items-center py-4')
+classArray.push(sizes[size || 'normal'])
+
+const combined = classArray.join(' ')
+---
+<div class=`${sticky ? 'sticky': ''} top-0 left-0 right-0`>
+  <Container size={width || 'full'}>
+    <div class={combined}>
+      <slot name="logo" />
+      <NavList spacing="large" inline items={menu} brand={brand} class={linkClass} />
+    </div>
+  </Container>
+</div>

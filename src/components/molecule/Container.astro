@@ -1,0 +1,26 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  size?: 'small' | 'normal' | 'large' | 'full'
+}
+
+const {size} = Astro.props as Props;
+
+const sizes = {
+  small: 'max-w-3xl',
+  normal: 'max-w-5xl',
+  large: 'max-w-7xl',
+  full: '',
+}
+
+const classArray = []
+classArray.push('mx-auto px-4 w-full')
+classArray.push(sizes[size || 'normal'])
+
+const combined = classArray.join(' ')
+
+---
+
+<div class={combined}>
+  <slot />
+</div>

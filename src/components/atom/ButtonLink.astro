@@ -5,11 +5,13 @@ export interface Props {
   outlined?: boolean
   rounded?: boolean
   bold?: boolean
+  underline?: boolean
+  href: string
   size?: 'small' | 'normal' | 'large'
   padding?: 'small' | 'normal' | 'large'
 }
 
-const { click, outlined, brand, rounded, bold, size, padding  } = Astro.props as Props;
+const { click, outlined, brand, rounded, bold, size, padding, href, underline  } = Astro.props as Props;
 
 const paddings = {
   small: 'px-2 py-1',
@@ -27,6 +29,7 @@ const classArray = []
 
 classArray.push('inline-flex items-center justify-center gap-2')
 brand && classArray.push('text-brand')
+underline && classArray.push('underline')
 bold && classArray.push('font-bold')
 classArray.push(sizes[size || 'normal'])
 classArray.push(paddings[padding || 'normal'])
@@ -39,6 +42,6 @@ const combined = classArray.join(' ')
 
 ---
 
-<button x-on:click={click} class={combined}>
+<a href={href} x-on:click={click} class={combined}>
   <slot />
-</button>
+</a>

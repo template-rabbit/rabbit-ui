@@ -1,0 +1,58 @@
+---
+import ListElement from "../atom/ListElement.astro"
+export interface Props {
+  brand?: boolean
+  weight?: 'thin' | 'light' | 'normal' | 'bold' | 'black'
+  align?: 'left' | 'center' | 'right'
+  level?: 1 | 2 | 3 | 4 | 5 | 6
+}
+
+const {brand, level, weight, align} = Astro.props as Props
+
+const Element = `h${level || 1}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+const sizes = {
+  h1: 'text-9xl',
+  h2: 'text-6xl',
+  h3: 'text-4xl',
+  h4: 'text-2xl',
+  h5: 'text-xl',
+  h6: 'text-lg',
+}
+
+const paddings = {
+  h1: 'mb-16',
+  h2: 'mb-12',
+  h3: 'mb-8',
+  h4: 'mb-4',
+  h5: 'mb-2',
+  h6: 'mb-1',
+}
+
+const weights = {
+  thin: 'font-thin',
+  light: 'font-light',
+  normal: 'font-normal',
+  bold: 'font-bold',
+  black: 'font-black',
+}
+
+const aligns = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+}
+
+const classArray = []
+
+classArray.push(brand && 'text-brand')
+classArray.push(weight && weights[weight || 'normal'])
+classArray.push(sizes[Element || 'h1'])
+classArray.push(paddings[Element || 'h1'])
+align && classArray.push(aligns[align])
+
+const combined = classArray.join(' ')
+
+---
+
+<Element class={combined}><slot /></Element>
