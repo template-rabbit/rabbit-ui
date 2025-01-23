@@ -1,0 +1,61 @@
+---
+import {Image} from 'astro:assets';
+export interface Props {
+  size?: 'small' | 'normal' | 'large'
+  radius?: 'none' | 'small' | 'normal' | 'large' | 'x-large' | '2x-large' | | '3x-large' | 'full'
+  spacing?: 'small' | 'normal' | 'large'
+  src: string
+  width: number
+  height: number
+  alt: string
+  reverce?: boolean
+}
+
+const {size, src, alt, radius, width, height, reverce, spacing} = Astro.props as Props;
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const spacings = {
+  small: 'gap-4',
+  normal: 'gap-8',
+  large: 'gap-16',
+}
+
+const radiuses = {
+  none: 'rounded-none',
+  small: 'rounded',
+  normal: 'rounded-md',
+  large: 'rounded-lg',
+  'x-large': 'rounded-xl',
+  '2x-large': 'rounded-2xl',
+  '3x-large': 'rounded-3xl',
+  full: 'rounded-full',
+}
+
+const classArray = []
+classArray.push(sizes[size || 'normal'])
+classArray.push('flex items-center w-full mb-8')
+classArray.push(spacings[spacing || 'normal'])
+
+const combined = classArray.join(' ')
+---
+
+<div class={combined}>
+  {reverce && (
+    <div class="w-1/2">
+      <slot/>
+    </div>)
+  }
+  <div class="w-1/2">
+    <Image width={width} height={height} src={src} alt={alt} class={radiuses[radius || 'none']}/>
+  </div>
+  {!reverce && (
+    <div class="w-1/2">
+      <slot/>
+    </div>)
+  }
+</div>

@@ -1,0 +1,78 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large' | 'x-large'
+  leading?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+  weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black'
+  mb?: '0' | '1' | '2' | '4' | '8' | '12' |'16' | '24' | '32' | '48' | '64'
+  dim?: boolean
+  narow?: boolean
+
+}
+
+const {brand, size, leading, weight, mb, dim, narow} = Astro.props as Props;
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+  'x-large': 'text-xl',
+}
+
+const leadings = {
+  none: 'leading-none',
+  tight: 'leading-tight',
+  snug: 'leading-snug',
+  normal: 'leading-normal',
+  relaxed: 'leading-relaxed',
+  loose: 'leading-loose',
+}
+
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  8: 'mb-8',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+}
+
+const weights = {
+  thin: 'font-thin',
+  extralight: 'font-extralight',
+  light: 'font-light',
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+  extrabold: 'font-extrabold',
+  black: 'font-black',
+}
+
+const classArray = []
+classArray.push(sizes[size || 'normal'])
+classArray.push(leadings[leading || 'normal'])
+classArray.push(weights[weight || 'normal'])
+classArray.push('dark:text-light text-dark')
+classArray.push(marginBottoms[mb || '8'])
+dim && classArray.push('dark:text-light text-dark')
+
+const combined = classArray.join(' ')
+---
+{narow ? (
+  <div class="max-w-3xl mx-auto">
+    <p class={combined}>
+      <slot />
+    </p>
+  </div>
+) : (
+  <p class={combined}>
+    <slot />
+  </p>
+)}

@@ -15,6 +15,10 @@ import ButtonNavList from "../components/molecule/ButtonNavList.astro";
 import Close from "../components/local/icons/Close.astro";
 import Menu from "../components/local/icons/Menu.astro";
 import Faq from "../components/molecule/Faq.astro";
+import ImageText from "../components/molecule/ImageText.astro";
+import Text from "../components/atom/Text.astro";
+import TextImage from "../components/molecule/TextImage.astro";
+import PageHeader from "../components/molecule/PageHeader.astro";
 
 const menuItems = [
   {name: 'Home', link: '/'},
@@ -30,7 +34,7 @@ const menuItems = [
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My cool astro project</title>
 </head>
-<body class="dark:text-light text-dark bg-light dark:bg-dark mb-8">
+<body class="dark:text-lighter text-darker bg-lighter dark:bg-darker mb-8">
 
 <Sticky top="small">
   <Container size="full">
@@ -44,21 +48,72 @@ const menuItems = [
           <Menu class="w-8"/>
         </ButtonNavList>
       </div>
-
     </Panel>
   </Container>
 </Sticky>
-
-<!--<Nav linkClass="underline" sticky brand
-     menu={[
-       {name: 'Home', link: '/'},
-       {name: 'About', link: '/about'},
-       {name: 'Contact', link: '/contact'}
-     ]}>
-  <a href="/" class="w-8" slot="logo">
-    <Logo class="fill-brand"/>
-  </a>
-</Nav> -->
+<Container size="large">
+  <PageHeader title="Pricing" subTitle="Have a look at the pricing table"/>
+  <Text weight="light" size="large" leading="relaxed" dim narow>
+    lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+    tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+    ridiculus nascetur enim.
+  </Text>
+  <ImageText width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800" alt="Something here">
+    <Heading level="2" mb="4">
+      This is the heading
+    </Heading>
+    <Text size="x-large" leading="loose" weight="light">
+      lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+      tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+      ridiculus nascetur enim.
+    </Text>
+  </ImageText>
+  <ImageText
+    reverce
+    spacing="large"
+    width="800"
+    height="800"
+    radius="3x-large"
+    src="https://picsum.photos/id/11/800/800"
+    alt="Something here"
+  >
+    <Heading level="2">
+      This is the heading
+    </Heading>
+    <Text weight="light">
+      lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+      tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+      ridiculus nascetur enim.
+    </Text>
+  </ImageText>
+  <TextImage spacing="large" width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800"
+             alt="Something here">
+    <Badge size="small" mb="2" brand>This is a badge</Badge>
+    <Heading level="3" as="h6" brand weight="medium" mb="0">
+      This is the heading
+    </Heading>
+    <Heading level="2" as="h2" mb="8">
+      This is the heading
+    </Heading>
+    <Text weight="extralight" size="large" leading="normal">
+      lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+      tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+      ridiculus nascetur enim.
+    </Text>
+  </TextImage>
+</Container>
+<Container size="small" mb="32">
+  <Heading level="2" align="center" mb="4" as="h3">
+    This is the heading
+  </Heading>
+  <Text weight="light" size="large" leading="relaxed" dim>
+    lobortis
+    <Brand class="underline">hendrerit ornare volutpat morbi molestie.</Brand>
+    Dolor tristique et montes penatibus arcu, leo ligula placerat
+    tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+    ridiculus nascetur enim.
+  </Text>
+</Container>
 <Container size="large">
   <Panel brand>
     Hello
@@ -84,6 +139,7 @@ const menuItems = [
   <Heading level={4}>Heading h4</Heading>
   <Heading level={5}>Heading h5</Heading>
   <Heading level={6}>Heading h6</Heading>
+  <Heading level={6} mb="64">Heading h6 mb 64</Heading>
   <div class="inline-flex flex-col gap-4">
     <Button rounded outlined padding="large" size="large">This is the button text</Button>
     <Button rounded outlined brand>This is the button text</Button>
@@ -93,11 +149,23 @@ const menuItems = [
     </Button>
   </div>
   <Faq items={[
-    {question: 'Lorem ipsum is placeholder text', answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'},
-    {question: 'Lorem ipsum is placeholder text', answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'},
-    {question: 'Lorem ipsum is placeholder text', answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'},
-    {question: 'Lorem ipsum is placeholder text', answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'}
-  ]} />
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    }
+  ]}/>
 </Container>
 </body>
 </html>

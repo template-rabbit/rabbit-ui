@@ -2,9 +2,10 @@
 import ListElement from "../atom/ListElement.astro";
 export interface Props {
   size?: 'small' | 'normal' | 'large' | 'full'
+  mb?: '0' | '1' | '2' | '4' | '8' | '12' |'16' | '24' | '32' | '48' | '64'
 }
 
-const {size} = Astro.props as Props;
+const {size, mb} = Astro.props as Props;
 
 const sizes = {
   small: 'max-w-3xl',
@@ -13,9 +14,24 @@ const sizes = {
   full: '',
 }
 
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  8: 'mb-8',
+  12: 'mb-8',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+}
+
 const classArray = []
 classArray.push('mx-auto px-4 w-full')
 classArray.push(sizes[size || 'normal'])
+classArray.push(marginBottoms[mb || 0])
 
 const combined = classArray.join(' ')
 

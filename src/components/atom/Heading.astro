@@ -2,14 +2,19 @@
 import ListElement from "../atom/ListElement.astro"
 export interface Props {
   brand?: boolean
-  weight?: 'thin' | 'light' | 'normal' | 'bold' | 'black'
+  weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black'
   align?: 'left' | 'center' | 'right'
   level?: 1 | 2 | 3 | 4 | 5 | 6
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  dim?: boolean
 }
 
-const {brand, level, weight, align} = Astro.props as Props
+const {brand, level, weight, align, mb, as, dim} = Astro.props as Props
 
 const Element = `h${level || 1}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+const asElement = as || Element
 
 const sizes = {
   h1: 'text-9xl',
@@ -21,19 +26,39 @@ const sizes = {
 }
 
 const paddings = {
-  h1: 'mb-16',
-  h2: 'mb-12',
-  h3: 'mb-8',
-  h4: 'mb-4',
-  h5: 'mb-2',
-  h6: 'mb-1',
+  h1: 16,
+  h2: 12,
+  h3: 8,
+  h4: 4,
+  h5: 2,
+  h6: 1,
+}
+
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  6: 'mb-6',
+  8: 'mb-8',
+  10: 'mb-10',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
 }
 
 const weights = {
   thin: 'font-thin',
+  extralight: 'font-extralight',
   light: 'font-light',
   normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
   bold: 'font-bold',
+  extrabold: 'font-extrabold',
   black: 'font-black',
 }
 
@@ -47,9 +72,11 @@ const classArray = []
 
 classArray.push(brand && 'text-brand')
 classArray.push(weight && weights[weight || 'normal'])
-classArray.push(sizes[Element || 'h1'])
-classArray.push(paddings[Element || 'h1'])
+classArray.push(sizes[asElement || 'h1'])
+mb && classArray.push(marginBottoms[mb])
+!mb && classArray.push(marginBottoms[paddings[asElement || 'h1']])
 align && classArray.push(aligns[align])
+dim && classArray.push('dark:text-light text-dark')
 
 const combined = classArray.join(' ')
 

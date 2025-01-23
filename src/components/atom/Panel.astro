@@ -23,10 +23,10 @@ const blures = {
 
 const classArray = []
 classArray.push('border p-4 mb-8')
-!brand && !contrast && classArray.push('dark:border-light/15 border-dark/15 bg-dark/5 dark:bg-light/5')
-!brand && contrast && classArray.push('dark:border-light/15 border-dark/15 bg-white dark:bg-black')
+!brand && !contrast && classArray.push('dark:border-lighter/15 border-darker/15 bg-darker/5 dark:bg-lighter/5')
+!brand && contrast && classArray.push('dark:border-lighter/15 border-darker/15 bg-whitest dark:bg-darkest')
 brand && !contrast && classArray.push('border-brand/25 bg-brand/10')
-brand && contrast && classArray.push('border-brand/25 bg-white dark:bg-black')
+brand && contrast && classArray.push('border-brand/25 bg-white dark:bg-darkest')
 blur && classArray.push(blures[blur || 'none'])
 classArray.push(radiuses[radius || 'normal'])
 

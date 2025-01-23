@@ -4,9 +4,10 @@ export interface Props {
   brand?: boolean
   size?: 'small' | 'normal' | 'large'
   padding?: 'small' | 'normal' | 'large'
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
 }
 
-const {brand, size, padding} = Astro.props as Props;
+const {brand, size, padding, mb} = Astro.props as Props;
 
 const sizes = {
   small: 'text-xs',
@@ -20,12 +21,29 @@ const paddings = {
   large: 'px-4 py-2',
 }
 
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  6: 'mb-6',
+  8: 'mb-8',
+  10: 'mb-10',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+}
+
 const classArray = []
 classArray.push('rounded-full border inline-block bg-dark/5 dark:bg-light/5 inline-flex gap-2 items-center')
 brand && classArray.push('text-brand border-brand/25')
 !brand && classArray.push('border-dark/25 dark:border-light/25')
 classArray.push(sizes[size || 'normal'])
 classArray.push(paddings[padding || 'normal'])
+mb && classArray.push(marginBottoms[mb])
 const combined = classArray.join(' ')
 ---
 

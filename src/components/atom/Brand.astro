@@ -1,3 +1,13 @@
-<span class="text-brand">
+---
+const { class: className } = Astro.props
+
+const classArray = []
+classArray.push('text-brand')
+className && classArray.push(className)
+
+const combined = classArray.join(' ')
+---
+
+<span class={combined}>
   <slot />
 </span>
