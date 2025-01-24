@@ -5,13 +5,13 @@ export interface Props {
   size?: 'small' | 'normal' | 'large' | 'x-large'
   leading?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black'
-  mb?: '0' | '1' | '2' | '4' | '8' | '12' |'16' | '24' | '32' | '48' | '64'
+  mb?: '0' | '1' | '2' | '4' | '8' | '12' | '16' | '24' | '32' | '48' | '64'
   dim?: boolean
-  narow?: boolean
+  narrow?: boolean
 
 }
 
-const {brand, size, leading, weight, mb, dim, narow} = Astro.props as Props;
+const {brand, size, leading, weight, mb, dim, narrow} = Astro.props as Props;
 
 const sizes = {
   small: 'text-sm',
@@ -62,17 +62,11 @@ classArray.push(weights[weight || 'normal'])
 classArray.push('dark:text-light text-dark')
 classArray.push(marginBottoms[mb || '8'])
 dim && classArray.push('dark:text-light text-dark')
+narrow && classArray.push('max-w-3xl mx-auto')
 
 const combined = classArray.join(' ')
 ---
-{narow ? (
-  <div class="max-w-3xl mx-auto">
-    <p class={combined}>
-      <slot />
-    </p>
-  </div>
-) : (
-  <p class={combined}>
-    <slot />
-  </p>
-)}
+
+<p class={combined}>
+  <slot/>
+</p>

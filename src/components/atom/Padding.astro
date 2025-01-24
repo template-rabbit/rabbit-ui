@@ -1,0 +1,54 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  mt?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64' | '72' | '96'
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64' | '72' | '96'
+
+}
+
+const {mt, mb} = Astro.props as Props;
+
+const marginTops = {
+  0: 'mt-0',
+  1: 'mt-1',
+  2: 'mt-2',
+  4: 'mt-4',
+  6: 'mt-6',
+  8: 'mt-8',
+  10: 'mt-10',
+  12: 'mt-12',
+  16: 'mt-16',
+  24: 'mt-24',
+  32: 'mt-32',
+  48: 'mt-48',
+  64: 'mt-64',
+  72: 'mt-72',
+  96: 'mt-96',
+}
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  6: 'mb-6',
+  8: 'mb-8',
+  10: 'mb-10',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+  72: 'mb-72',
+  96: 'mb-96',
+}
+
+const classArray = []
+classArray.push(marginTops[mt || '8'])
+classArray.push(marginBottoms[mb || '8'])
+
+const combined = classArray.join(' ')
+---
+<div class={combined}>
+  <slot />
+</div>

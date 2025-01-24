@@ -4,6 +4,7 @@ export interface Props {
   size?: 'small' | 'normal' | 'large'
   radius?: 'none' | 'small' | 'normal' | 'large' | 'x-large' | '2x-large' | | '3x-large' | 'full'
   spacing?: 'small' | 'normal' | 'large'
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
   src: string
   width: number
   height: number
@@ -11,7 +12,7 @@ export interface Props {
   reverce?: boolean
 }
 
-const {size, src, alt, radius, width, height, reverce, spacing} = Astro.props as Props;
+const {size, src, alt, radius, width, height, reverce, spacing, mb} = Astro.props as Props;
 
 const sizes = {
   small: 'text-sm',
@@ -20,9 +21,9 @@ const sizes = {
 }
 
 const spacings = {
-  small: 'gap-4',
-  normal: 'gap-8',
-  large: 'gap-16',
+  small: 'gap-8',
+  normal: 'gap-16',
+  large: 'gap-32',
 }
 
 const radiuses = {
@@ -36,10 +37,27 @@ const radiuses = {
   full: 'rounded-full',
 }
 
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  6: 'mb-6',
+  8: 'mb-8',
+  10: 'mb-10',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+}
+
 const classArray = []
 classArray.push(sizes[size || 'normal'])
-classArray.push('flex items-center w-full mb-8')
+classArray.push('flex items-center w-full')
 classArray.push(spacings[spacing || 'normal'])
+classArray.push(marginBottoms[mb || '16'])
 
 const combined = classArray.join(' ')
 ---
