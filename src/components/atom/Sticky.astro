@@ -12,9 +12,17 @@ const tops = {
 }
 
 const { class: className, top } = Astro.props
+
+const classArray = []
+classArray.push('sticky left-0 right-0 z-50')
+classArray.push(tops[top || 'none'])
+
+
+const combined = classArray.join(' ')
+
 ---
 
 
-<div class=`sticky left-0 right-0 ${className} ${top && tops[top || 'none']}`>
+<div class={combined}>
   <slot/>
 </div>

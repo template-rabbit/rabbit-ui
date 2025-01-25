@@ -21,6 +21,7 @@ import TextImage from "../components/molecule/TextImage.astro";
 import PageHeader from "../components/molecule/PageHeader.astro";
 import Space from "../components/atom/Space.astro";
 import Padding from "../components/atom/Padding.astro";
+import NavBar from "../components/molecule/NavBar.astro";
 
 const menuItems = [
   {name: 'Home', link: '/'},
@@ -38,6 +39,22 @@ const menuItems = [
 </head>
 <body class="dark:text-lighter text-darker bg-lighter dark:bg-darker mb-8">
 
+<Sticky>
+  <NavBar theme="flat" height="tall" mb="32"  shadow>
+    <Container size="large">
+      <div class="flex justify-between intems-center">
+        <a href="/" class="w-8" slot="logo">
+          <Logo class="fill-brand"/>
+        </a>
+        <NavList inline brand hideOnMobile items={menuItems}/>
+        <ButtonNavList hideOnMobile items={menuItems}>
+          <Menu class="w-8"/>
+        </ButtonNavList>
+      </div>
+    </Container>
+  </NavBar>
+</Sticky>
+
 <!--<Sticky top="small">
   <Container size="full">
     <Panel brand blur="large">
@@ -53,21 +70,9 @@ const menuItems = [
     </Panel>
   </Container>
 </Sticky>-->
-<Container size="large">
-  <Padding mb="32" mt="8">
-    <div class="flex justify-between intems-center">
-      <a href="/" class="w-8" slot="logo">
-        <Logo class="fill-brand"/>
-      </a>
-      <NavList inline brand hideOnMobile items={menuItems}/>
-      <ButtonNavList hideOnMobile items={menuItems}>
-        <Menu class="w-8"/>
-      </ButtonNavList>
-    </div>
-  </Padding>
-</Container>
 
 <Container size="large">
+  <Badge size="small" brand mb="2" align="center">This is a badge</Badge>
   <PageHeader title="Pricing" subTitle="Have a look at the pricing table"/>
   <Text weight="light" size="large" leading="relaxed" dim narrow mb="32">
     lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat

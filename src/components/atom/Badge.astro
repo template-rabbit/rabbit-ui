@@ -4,10 +4,11 @@ export interface Props {
   brand?: boolean
   size?: 'small' | 'normal' | 'large'
   padding?: 'small' | 'normal' | 'large'
-  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' | '16' | '24' | '32' | '48' | '64'
+  align?: 'left' | 'center' | 'right'
 }
 
-const {brand, size, padding, mb} = Astro.props as Props;
+const {brand, size, padding, mb, align} = Astro.props as Props;
 
 const sizes = {
   small: 'text-xs',
@@ -19,6 +20,12 @@ const paddings = {
   small: 'px-1 py-0.5',
   normal: 'px-2 py-1',
   large: 'px-4 py-2',
+}
+
+const aligns = {
+  left: '',
+  center: 'flex justify-around',
+  right: 'flex justify-end',
 }
 
 const marginBottoms = {
@@ -44,9 +51,11 @@ brand && classArray.push('text-brand border-brand/25')
 classArray.push(sizes[size || 'normal'])
 classArray.push(paddings[padding || 'normal'])
 mb && classArray.push(marginBottoms[mb])
+align && classArray.push(aligns[align])
 const combined = classArray.join(' ')
 ---
-
-<div class={combined}>
-  <slot />
+<div class={align && aligns[align]}>
+  <div class={combined}>
+    <slot/>
+  </div>
 </div>

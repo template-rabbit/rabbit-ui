@@ -1,0 +1,66 @@
+---
+export interface Props {
+  brand?: boolean
+  size?: 'small' | 'normal' | 'large'
+  theme?: 'light' | 'dark' | 'brand' | 'current' | 'transparent' | 'flat'
+  height?: 'short' | 'medium' | 'tall'
+  border?: boolean
+  shadow?: boolean
+  mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
+
+}
+
+const {brand, size, theme, height, border, shadow, mb} = Astro.props as Props;
+
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+
+const heights = {
+  short: 'py-2',
+  medium: 'py-4',
+  tall: 'py-6',
+}
+
+const themes = {
+  light: 'bg-lightest text-darkest',
+  dark: 'bg-darkest text-lightest',
+  brand: 'bg-brand text-brand-contrast',
+  current: 'bg-lightest text-darkest dark:bg-darkest dark:text-lightest',
+  transparent: 'bg-transparent',
+  flat: 'bg-lighter dark:bg-darker',
+}
+
+const marginBottoms = {
+  0: 'mb-0',
+  1: 'mb-1',
+  2: 'mb-2',
+  4: 'mb-4',
+  6: 'mb-6',
+  8: 'mb-8',
+  10: 'mb-10',
+  12: 'mb-12',
+  16: 'mb-16',
+  24: 'mb-24',
+  32: 'mb-32',
+  48: 'mb-48',
+  64: 'mb-64',
+}
+
+const classArray = []
+classArray.push(sizes[size || 'normal'])
+classArray.push(themes[theme || 'current'])
+classArray.push(heights[height || 'normal'])
+classArray.push(marginBottoms[mb || '8'])
+// Border and shadow needs theme to work properly ?
+border && classArray.push('border-b border-dark/10 dark:border-light/10')
+shadow && classArray.push('shadow-md shadow-dark/15 dark:shadow-black/25')
+
+const combined = classArray.join(' ')
+---
+
+<div class={combined}>
+  <slot />
+</div>

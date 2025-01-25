@@ -55,7 +55,7 @@ const marginBottoms = {
 
 const classArray = []
 classArray.push(sizes[size || 'normal'])
-classArray.push('flex items-center w-full')
+classArray.push('flex flex-col md:flex-row items-center w-full ')
 classArray.push(spacings[spacing || 'normal'])
 classArray.push(marginBottoms[mb || '16'])
 
@@ -64,15 +64,15 @@ const combined = classArray.join(' ')
 
 <div class={combined}>
   {reverce && (
-    <div class="w-1/2">
+    <div class="md:w-1/2">
       <slot/>
     </div>)
   }
-  <div class="w-1/2">
+  <div class="md:w-1/2">
     <Image width={width} height={height} src={src} alt={alt} class={radiuses[radius || 'none']}/>
   </div>
   {!reverce && (
-    <div class="w-1/2">
+    <div class="md:w-1/2">
       <slot/>
     </div>)
   }
