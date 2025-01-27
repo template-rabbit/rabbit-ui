@@ -1,0 +1,32 @@
+---
+import ListElement from "../atom/ListElement.astro";
+export interface Props {
+  spacing?: 'small' | 'normal' | 'large'
+  }
+
+const {spacing} = Astro.props as Props;
+
+/*
+const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+*/
+
+const spacings = {
+  small: 'gap-4',
+  normal: 'gap-8',
+  large: 'gap-16',
+}
+
+const classArray = []
+classArray.push('flex items-center flex-col md:flex-row w-full')
+classArray.push(spacings[spacing || 'normal'])
+
+const combined = classArray.join(' ')
+---
+
+<div class={combined}>
+  <slot />
+</div>

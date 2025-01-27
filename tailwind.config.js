@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,astro,jsx,tsx}'],
-  darkMode: "class",
+  darkMode: 'selector',
   theme: {
     extend: {
       colors: {
@@ -16,5 +16,9 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('light', '.light &', '.light&', '.light:&')
+    }
+  ],
 };
