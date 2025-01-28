@@ -8,10 +8,10 @@ export interface Props {
   mb?: '0' | '1' | '2' | '4' | '8' | '12' | '16' | '24' | '32' | '48' | '64'
   dim?: boolean
   narrow?: boolean
-
+  align?: 'left' | 'center' | 'right'
 }
 
-const {brand, size, leading, weight, mb, dim, narrow} = Astro.props as Props;
+const {brand, size, leading, weight, mb, dim, narrow, align, class: className} = Astro.props as Props;
 
 const sizes = {
   small: 'text-sm',
@@ -55,14 +55,22 @@ const weights = {
   black: 'font-black',
 }
 
+const aligns = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+}
+
 const classArray = []
 classArray.push(sizes[size || 'normal'])
 classArray.push(leadings[leading || 'normal'])
 classArray.push(weights[weight || 'normal'])
 classArray.push('dark:text-light text-dark')
 classArray.push(marginBottoms[mb || '8'])
+classArray.push(aligns[align || 'left'])
 dim && classArray.push('dark:text-light text-dark')
 narrow && classArray.push('max-w-3xl mx-auto')
+className && classArray.push(className)
 
 const combined = classArray.join(' ')
 ---
