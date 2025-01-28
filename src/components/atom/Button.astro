@@ -8,9 +8,10 @@ export interface Props {
   underline?: boolean
   size?: 'small' | 'normal' | 'large'
   padding?: 'small' | 'normal' | 'large'
+  align?: 'left' | 'center' | 'right'
 }
 
-const { click, outlined, brand, rounded, bold, size, padding, underline  } = Astro.props as Props;
+const { click, outlined, brand, rounded, bold, size, padding, underline, align  } = Astro.props as Props;
 
 const paddings = {
   small: 'px-2 py-1',
@@ -24,6 +25,12 @@ const sizes = {
   large: 'text-lg',
 }
 
+const aligns = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+}
+
 const classArray = []
 
 classArray.push('inline-flex items-center justify-center gap-2 transition-all')
@@ -34,6 +41,7 @@ classArray.push(sizes[size || 'normal'])
 classArray.push(paddings[padding || 'normal'])
 rounded && classArray.push('rounded')
 outlined && classArray.push('border')
+classArray.push(aligns[align || 'left'])
 
 // outlined && brand && classArray.push()
 // !outlined && !brand && classArray.push()

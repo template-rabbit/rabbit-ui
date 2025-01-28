@@ -58,153 +58,155 @@ const menuItems = [
         href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
   <title>My cool astro project</title>
 </head>
-<body class="">
-<ColorContainer>
-  <Sticky>
-    <NavBar theme="flat" height="tall" mb="32" shadow>
-      <Container size="large">
-        <div class="flex justify-between intems-center">
-          <a href="/" class="w-8" slot="logo">
-            <Logo class="fill-brand"/>
-          </a>
-          <NavList inline hideOnMobile items={menuItems} themeSwitch/>
-          <ButtonNavList hideOnMobile items={menuItems}>
-            <Menu class="w-8"/>
-          </ButtonNavList>
-        </div>
-      </Container>
-    </NavBar>
-  </Sticky>
+<body class="dark:text-lighter light:text-darker light:bg-lighter dark:bg-darker">
+<Sticky>
+  <NavBar theme="flat" height="tall" mb="32" shadow>
+    <Container size="large">
+      <div class="flex justify-between intems-center">
+        <a href="/" class="w-8" slot="logo">
+          <Logo class="fill-brand"/>
+        </a>
+        <NavList inline hideOnMobile items={menuItems} themeSwitch/>
+        <ButtonNavList hideOnMobile items={menuItems}>
+          <Menu class="w-8"/>
+        </ButtonNavList>
+      </div>
+    </Container>
+  </NavBar>
+</Sticky>
 
-  <ThemeContainer dark>
-    <ColorContainer>
-      This is the correct test
-    </ColorContainer>
-  </ThemeContainer>
-  <Container size="large">
-    <Badge size="small" brand mb="2" align="center">This is a badge</Badge>
-    <PageHeader title="Pricing" subTitle="Have a look at the pricing table"/>
-    <Text weight="light" size="large" leading="relaxed" dim narrow mb="32">
+<ThemeContainer dark>
+  <ColorContainer>
+    This is the correct test
+  </ColorContainer>
+</ThemeContainer>
+<Container size="large">
+  <Badge size="small" brand mb="2" align="center">This is a badge</Badge>
+  <PageHeader title="Pricing" subTitle="Have a look at the pricing table"/>
+  <Text weight="light" size="large" leading="relaxed" dim narrow mb="32">
+    lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+    tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+    ridiculus nascetur enim.
+  </Text>
+  <ImageText width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800"
+             alt="Something here">
+    <Heading level="2" mb="4">
+      This is the heading
+    </Heading>
+    <Text size="x-large" leading="loose" weight="light">
       lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
       tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
       ridiculus nascetur enim.
     </Text>
-    <ImageText width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800"
-               alt="Something here">
-      <Heading level="2" mb="4">
-        This is the heading
-      </Heading>
-      <Text size="x-large" leading="loose" weight="light">
-        lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
-        tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
-        ridiculus nascetur enim.
-      </Text>
-    </ImageText>
-    <ImageText
-      reverce
-      spacing="large"
-      width="800"
-      height="800"
-      radius="3x-large"
-      src="https://picsum.photos/id/11/800/800"
-      alt="Something here"
-    >
-      <Heading level="2">
-        This is the heading
-      </Heading>
-      <Text weight="light">
-        lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
-        tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
-        ridiculus nascetur enim.
-      </Text>
-    </ImageText>
-    <TextImage spacing="large" width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800"
-               alt="Something here">
-      <Badge size="small" mb="2" brand>This is a badge</Badge>
-      <Heading level="3" as="h6" brand weight="medium" mb="0">
-        This is the heading
-      </Heading>
-      <Heading level="2" as="h2" mb="8">
-        This is the heading
-      </Heading>
-      <Text weight="extralight" size="large" leading="normal">
-        lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
-        tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
-        ridiculus nascetur enim.
-      </Text>
-    </TextImage>
-  </Container>
-  <Container size="small" mb="32">
-    <Heading level="2" align="center" mb="4" as="h3">
+  </ImageText>
+  <ImageText
+    reverce
+    spacing="large"
+    width="800"
+    height="800"
+    radius="3x-large"
+    src="https://picsum.photos/id/11/800/800"
+    alt="Something here"
+  >
+    <Heading level="2">
       This is the heading
     </Heading>
-    <Text weight="light" size="large" leading="relaxed" dim>
-      lobortis
-      <Brand class="underline">hendrerit ornare volutpat morbi molestie.</Brand>
-      Dolor tristique et montes penatibus arcu, leo ligula placerat
+    <Text weight="light">
+      lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
       tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
       ridiculus nascetur enim.
     </Text>
-  </Container>
-  <Container size="large">
-    <Panel brand>
-      Hello
-    </Panel>
-    <Panel brand contrast>
-      Hello
-    </Panel>
-    <Panel>
-      Hello
-    </Panel>
-    <Panel contrast>
-      Hello
-    </Panel>
-    <Badge size="small">This is a badge</Badge>
-    <Badge size="small" brand>This is a badge</Badge>
-    <Heading level={1} brand>Heading h1</Heading>
-    <Heading level={2}>Heading h2</Heading>
-    <Heading level={2}>This is a longer text to show the
-      <Brand>brand text</Brand>
-      and some more.
+  </ImageText>
+  <TextImage spacing="large" width="800" height="800" radius="3x-large" src="https://picsum.photos/id/11/800/800"
+             alt="Something here">
+    <Badge size="small" mb="2" brand>This is a badge</Badge>
+    <Heading level="3" as="h6" brand weight="medium" mb="0">
+      This is the heading
     </Heading>
-    <Heading level={3}>Heading h3</Heading>
-    <Heading level={4}>Heading h4</Heading>
-    <Heading level={5}>Heading h5</Heading>
-    <Heading level={6}>Heading h6</Heading>
-    <Heading level={6} mb="64">Heading h6 mb 64</Heading>
-    <div class="inline-flex flex-col gap-4">
-      <Button rounded outlined padding="large" size="large">This is the button text</Button>
-      <Button rounded outlined brand>This is the button text</Button>
-      <Button rounded size="small" bold padding="large" click="console.log('I am here')"><span>aaa</span><span>This is the button text</span>
-      </Button>
-      <Button rounded brand size="small" bold padding="large" click="console.log('I am here')"><span>aaa</span><span>This is the button text</span>
-      </Button>
-    </div>
-    <Faq items={[
-      {
-        question: 'Lorem ipsum is placeholder text',
-        answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-      },
-      {
-        question: 'Lorem ipsum is placeholder text',
-        answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-      },
-      {
-        question: 'Lorem ipsum is placeholder text',
-        answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-      },
-      {
-        question: 'Lorem ipsum is placeholder text',
-        answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
-      }
-    ]}/>
-    <Table fixed border headings={['aaa', 'bbb']} rows={[['abc', 'bcd'], ['bce', 'dcf']]}/>
+    <Heading level="2" as="h2" mb="8">
+      This is the heading
+    </Heading>
+    <Text weight="extralight" size="large" leading="normal">
+      lobortis hendrerit ornare volutpat morbi molestie. Dolor tristique et montes penatibus arcu, leo ligula placerat
+      tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+      ridiculus nascetur enim.
+    </Text>
+  </TextImage>
+</Container>
+<Container size="small" mb="32">
+  <Heading level="2" align="center" mb="4" as="h3">
+    This is the heading
+  </Heading>
+  <Text weight="light" size="large" leading="relaxed" dim>
+    lobortis
+    <Brand class="underline">hendrerit ornare volutpat morbi molestie.</Brand>
+    Dolor tristique et montes penatibus arcu, leo ligula placerat
+    tellus. Morbi laoreet volutpat elementum nam mi euismod nulla. Suscipit vivamus vivamus aliquet ex; ad convallis
+    ridiculus nascetur enim.
+  </Text>
+</Container>
+<Container size="large">
+  <Panel brand>
+    Hello
+  </Panel>
+  <Panel brand contrast>
+    Hello
+  </Panel>
+  <Panel>
+    Hello
+  </Panel>
+  <Panel contrast>
+    Hello
+  </Panel>
+  <Badge size="small">This is a badge</Badge>
+  <Badge size="small" brand>This is a badge</Badge>
+  <Heading level={1} brand>Heading h1</Heading>
+  <Heading level={2}>Heading h2</Heading>
+  <Heading level={2}>This is a longer text to show the
+    <Brand>brand text</Brand>
+    and some more.
+  </Heading>
+  <Heading level={3}>Heading h3</Heading>
+  <Heading level={4}>Heading h4</Heading>
+  <Heading level={5}>Heading h5</Heading>
+  <Heading level={6}>Heading h6</Heading>
+  <Heading level={6} mb="64">Heading h6 mb 64</Heading>
+  <div class="inline-flex flex-col gap-4">
+    <Button rounded outlined padding="large" size="large">This is the button text</Button>
+    <Button rounded outlined brand>This is the button text</Button>
+    <Button rounded size="small" bold padding="large" click="console.log('I am here')"><span>aaa</span><span>This is the button text</span>
+    </Button>
+    <Button rounded brand size="small" bold padding="large" click="console.log('I am here')"><span>aaa</span><span>This is the button text</span>
+    </Button>
+  </div>
+  <Faq items={[
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    },
+    {
+      question: 'Lorem ipsum is placeholder text',
+      answer: 'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'
+    }
+  ]}/>
+  <Table fixed border headings={['aaa', 'bbb']} rows={[['abc', 'bcd'], ['bce', 'dcf']]}/>
+  <Padding mb="32" mt="16">
     <Flex spacing="normal">
-      <Price title="First" features={['aaa', 'bbb', 'ccc']}/>
-      <Price title="Second" features={['aaa', 'bbb', 'ccc']}/>
-      <Price title="Third" features={['aaa', 'bbb', 'ccc']}/>
+      <Price price="900 kr" title="First" features={['aaa', 'bbb', 'ccc']}/>
+      <Price buttonText="Read more" main monthly="Lorem ipsum and some more" price="900 kr" title="Second" features={['aaa', 'bbb', 'ccc']}>
+        Lorem ipsum and some more, and some more, and some more
+      </Price>
+      <Price price="900 kr" title="Third" features={['aaa', 'bbb', 'ccc']}/>
     </Flex>
-  </Container>
-</ColorContainer>
+  </Padding>
+</Container>
 </body>
 </html>
