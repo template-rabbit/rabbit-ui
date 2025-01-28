@@ -1,0 +1,52 @@
+---
+export interface Props {
+  headings?: string[]
+  rows?: string[][]
+  fixed?: boolean
+  border?: boolean
+}
+
+const {headings, rows, fixed, border} = Astro.props as Props;
+
+/* const sizes = {
+  small: 'text-sm',
+  normal: 'text-base',
+  large: 'text-lg',
+}
+*/
+const classArray = []
+classArray.push(fixed ? 'table-fixed' : 'table-auto')
+classArray.push('w-full mb-8')
+border && classArray.push('border dark:border-light/15 border-dark/15')
+
+const combined = classArray.join(' ')
+
+const rowClassArray = []
+border && rowClassArray.push('border-t dark:border-light/15 border-dark/15')
+const rowCombined = rowClassArray.join(' ')
+
+const cellClassArray = []
+cellClassArray.push('p-4')
+border && cellClassArray.push('dark:[&:not(:last-child)]:border-light/15 [&:not(:last-child)]:border-dark/15')
+const cellCombined = cellClassArray.join(' ')
+
+
+---
+<table class={combined}>
+  <thead>
+    <tr>
+      {headings.map((heading) => (
+        <th class={cellCombined}>{heading}</th>
+      ))}
+    </tr>
+  </thead>
+  <tbody>
+    {rows.map((row) => (
+      <tr class={rowCombined}>
+        {row.map((cell) => (
+          <td class={cellCombined}>{cell}</td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>

@@ -56,9 +56,12 @@ Build your component
 
 ### Setup GitHub Actions
 
-When you're ready to publish your package to npm, this template is pre-configured with Changesets—a tool that automates versioning and package publishing. By default, the release action is disabled to prevent unintentional publishing from this template.
+When you're ready to publish your package to npm, this template is pre-configured with Changesets—a tool that automates
+versioning and package publishing. By default, the release action is disabled to prevent unintentional publishing from
+this template.
 
-To enable publishing for your project, you need to modify the GitHub Actions workflow. Specifically, you'll need to update the `.github/workflows/release.yml` file by removing the following line:
+To enable publishing for your project, you need to modify the GitHub Actions workflow. Specifically, you'll need to
+update the `.github/workflows/release.yml` file by removing the following line:
 
 ```diff
 - if: ${{ false }} # This ensures the workflow is skipped without any notification
@@ -68,7 +71,8 @@ To enable publishing for your project, you need to modify the GitHub Actions wor
 
 You’ll also need to set up an npm token in GitHub to authenticate with the npm registry and enable package publishing.
 
-For guidance on creating an npm token, refer to the official documentation: [Creating and viewing access tokens](https://docs.npmjs.com/creating-and-viewing-access-tokens).
+For guidance on creating an npm token, refer to the official
+documentation: [Creating and viewing access tokens](https://docs.npmjs.com/creating-and-viewing-access-tokens).
 
 ### Adding NPM Token to GitHub Secrets
 
@@ -78,4 +82,30 @@ Now that you have an NPM access token, you need to add it to your repository's s
 NPM_TOKEN=your-npm-token
 ```
 
-For guidance on adding secrets to a GitHub repository, please refer to the official documentation:[Creating secrets for a repository](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+For guidance on adding secrets to a GitHub repository, please refer to the official
+documentation:[Creating secrets for a repository](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+
+pnpm install --save-dev tailwindcss-theme-variants
+
+### Theme switch default light:
+
+```html
+x-data="{
+    theme: localStorage.getItem('theme') || 'light', // Default to 'light' if not set
+    setTheme(newTheme) {
+        this.theme = newTheme;
+        localStorage.setItem('theme', newTheme);
+    }
+}"
+```
+### Use OS default:
+
+```html
+x-data="{
+    theme: localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'), // Use OS theme if no localStorage value
+    setTheme(newTheme) {
+        this.theme = newTheme;
+        localStorage.setItem('theme', newTheme);
+    }
+}"
+```

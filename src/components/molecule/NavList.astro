@@ -1,6 +1,8 @@
 ---
 // items={[{name: 'Home', link: '/'}, {name: 'About', link: '/about'}, {name: 'Contact', link: '/contact'}]}
 
+
+import ThemeSwitch from "./ThemeSwitch.astro";
 interface Link {
   name: string;
   link: string;
@@ -13,9 +15,10 @@ export interface Props {
   inline?: boolean
   spacing?: 'small' | 'normal' | 'large';
   hideOnMobile?: boolean
+  themeSwitch?: boolean
 }
 
-const {items, brand, class: className, inline, spacing, hideOnMobile} = Astro.props as Props;
+const {items, brand, class: className, inline, spacing, hideOnMobile, themeSwitch} = Astro.props as Props;
 
 const spacings = {
   small: 'gap-2',
@@ -41,5 +44,10 @@ const combined = classArray.join(' ')
         </a>
       </li>
     ))}
+    {themeSwitch && (
+      <li class={`${className} ml-8`}>
+       <ThemeSwitch />
+      </li>
+    )}
   </ul>
 

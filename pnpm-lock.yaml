@@ -23,6 +23,9 @@ importers:
       tailwindcss:
         specifier: ^3.0.0
         version: 3.4.17
+      tailwindcss-theming:
+        specifier: 3.0.0-beta.3
+        version: 3.0.0-beta.3
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.4
@@ -230,6 +233,10 @@ packages:
 
   '@changesets/write@0.3.1':
     resolution: {integrity: sha512-SyGtMXzH3qFqlHKcvFY2eX+6b0NGiFcNav8AFsYwy5l8hejOeoeTDemu5Yjmke2V5jpzY+pBvM0vCCQ3gdZpfw==}
+
+  '@ctrl/tinycolor@3.6.1':
+    resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
+    engines: {node: '>=10'}
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -2280,6 +2287,9 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  tailwindcss-theming@3.0.0-beta.3:
+    resolution: {integrity: sha512-wNgd7CBGlq9GsbMI80b8K62iYhkIsZ08AmF9c/flEcQCpXH+Kj5kddhFCfO6qdUk8jygD/5UeSXJUA3knNUrbA==}
+
   tailwindcss@3.4.17:
     resolution: {integrity: sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==}
     engines: {node: '>=14.0.0'}
@@ -3042,6 +3052,8 @@ snapshots:
       fs-extra: 7.0.1
       human-id: 1.0.2
       prettier: 2.8.8
+
+  '@ctrl/tinycolor@3.6.1': {}
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:
@@ -5314,6 +5326,11 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  tailwindcss-theming@3.0.0-beta.3:
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+      lodash: 4.17.21
 
   tailwindcss@3.4.17:
     dependencies:
