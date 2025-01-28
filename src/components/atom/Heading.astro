@@ -8,9 +8,10 @@ export interface Props {
   mb?: '0' | '1' | '2' | '4' | '6' | '8' | '10' | '12' |'16' | '24' | '32' | '48' | '64'
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   dim?: boolean
+  uppercase?: boolean
 }
 
-const {brand, level, weight, align, mb, as, dim} = Astro.props as Props
+const {brand, level, weight, align, mb, as, dim, uppercase} = Astro.props as Props
 
 const Element = `h${level || 1}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
@@ -77,6 +78,7 @@ mb && classArray.push(marginBottoms[mb])
 !mb && classArray.push(marginBottoms[paddings[asElement || 'h1']])
 align && classArray.push(aligns[align])
 dim && classArray.push('dark:text-light text-dark')
+uppercase && classArray.push('uppercase')
 
 const combined = classArray.join(' ')
 

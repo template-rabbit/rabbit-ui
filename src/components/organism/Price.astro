@@ -1,39 +1,54 @@
 ---
 import ListElement from "../atom/ListElement.astro";
 import Heading from "../atom/Heading.astro";
+import Text from "../atom/Text.astro";
+import Button from "../atom/Button.astro";
 export interface Props {
   title: string
   features?: string[]
-
+  main?: boolean
+  price: string
+  monthly?: string
+  buttonText?: string
 }
 
-const { title, features } = Astro.props as Props;
+const {title, features, price, main, monthly, buttonText} = Astro.props as Props;
 
-/*
-const sizes = {
-  small: 'text-sm',
-  normal: 'text-base',
-  large: 'text-lg',
-}
-*/
 const classArray = []
-classArray.push('w-full border rounded-lg p-4 dark:border-light/15 border-dark/15')
+classArray.push('w-full border rounded-lg p-4')
+main && classArray.push('border-2 dark:border-light/25 border-dark/25 dark:bg-light/5')
+!main && classArray.push('mt-4 dark:border-light/15 border-dark/15')
 
 const combined = classArray.join(' ')
-
 ---
 
 <div class={combined}>
-  <Heading level="3" as="h5" align="center" brand>
+  <Heading level="2" as="h5" align="center" brand mb="8">
     {title}
   </Heading>
-  <ul>
+  <Heading level="3" as="h2" align="center" brand mb="8" weight="bold">
+    {price}
+  </Heading>
+  {monthly && (
+    <Heading level="4" as="h5" mb="4" weight="light" align="center" uppercase>
+      {monthly}
+    </Heading>
+  )}
+  {buttonText && (
+    <Button brand rounded align="center">
+      {buttonText}
+    </Button>
+  )}
+  <div>
+    <Text mb="8" leading="loose">
+      <slot/>
+    </Text>
+  </div>
+  <ul class="flex flex-col gap-2">
     {features && features.map((feature, index) => (
-      <ListElement key={index} brand>
+      <li key={index}>
         {feature}
-      </ListElement>
+      </li>
     ))}
   </ul>
-  Price table-ish
-  <slot />
 </div>
